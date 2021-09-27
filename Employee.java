@@ -25,10 +25,10 @@ public class Employee {
     public String getName(){
         return name;
     }
-    public void print(Product[] p){
+    public void print(String[] p){
        System.out.printf("\n%-7s >> ",name);
         for(int i = 0;i<p.length;i++){
-            System.out.printf("%s %d",p[i],sales[i]);
+            System.out.printf("%s %d ",p[i],sales[i]);
         }
         
         System.out.printf("\n%-15s = %10s %13s = %8s %s = %s\n","total sales",addComma(totalSale),"sales bonus",addComma(salesBonus),"extrabous",addComma(extraBonus));

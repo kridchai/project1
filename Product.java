@@ -44,6 +44,11 @@
         }
         return b;
     }
+
+    public  String getName(){
+      return name;
+
+    }
     
     public int compareTo(Product other) { 
         if (this.totalSalesBaht > other.totalSalesBaht)

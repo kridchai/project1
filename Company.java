@@ -40,28 +40,35 @@ public class Company {
             String line = File3.nextLine();
             String[] buff = line.split(",");
             for(int i = 0;i<buff.length;i++){
-                
-                
                   c = eA.indexOf(buff[i].trim());
                   if(c!=-1)
                     eA.get(c).addOvertimeBonus();
                         
             }
-        
         }
         File3.close();
         }
         catch(Exception e){
             System.out.println(e);
         }
+        String [] p = new String[pA.size()];
+        for(int i = pA.size()-1; i>=0; i--)
+                p[i] = pA.get(i).getName();        
+      
+        
         System.out.println("\n=== Bonus Calculation ===");
+        for(int i = eA.size()-1; i>=0; i--)
+                eA.get(i).print(p);
         
         System.out.println("\n=== Product summary ===");
-        String FileName = "products.txt";
-        try{
-            //Collections.sort(pA);
+         Collections.sort(pA);
             for(int i = pA.size()-1; i>=0; i--)
                 pA.get(i).print();
+        String FileName = "products.txt";
+        
+        
+        try{
+           
         } 
         catch(Exception e)
             {
