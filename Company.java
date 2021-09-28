@@ -60,11 +60,12 @@ public class Company {
       if(eA.get(i).GetTotalSale()!=eA.get(i-1).GetTotalSale())
         break;
     }
-    int moneyAdded = (int)(0.3 * eA.get(eA.size()-1).GetTotalSale());
+    int moneyAdded = (int)( (0.3 * eA.get(eA.size()-1).GetTotalSale())/count );
     for(int i = pA.size()-1;i<=0;i--){
       count--;
       eA.get(i).addextraBonus(moneyAdded);
-      if(count)
+      if(count==0)
+        break;
     }
 
     // copy product name to array p
