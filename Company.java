@@ -54,14 +54,15 @@ public class Company {
       System.out.println(e);
     }
     // AddExtrabonus
+    Collections.sort(eA);
     int count = 0;
-    for(int i = pA.size()-1;i<=0;i--){
+    for(int i = eA.size()-1;i>=0;i--){
       count+=1;
       if(eA.get(i).GetTotalSale()!=eA.get(i-1).GetTotalSale())
         break;
     }
-    int moneyAdded = (int)( (0.3 * eA.get(eA.size()-1).GetTotalSale())/count );
-    for(int i = pA.size()-1;i<=0;i--){
+    int moneyAdded = (int)( (0.005 * eA.get(eA.size()-1).GetTotalSale())/count );
+    for(int i = eA.size()-1;i>=0;i--){
       count--;
       eA.get(i).addextraBonus(moneyAdded);
       if(count==0)
@@ -75,7 +76,6 @@ public class Company {
       p[i] = pA.get(i).getName();
 
     System.out.println("\n=== Bonus Calculation ===");
-    Collections.sort(eA);
     for (int i = eA.size() - 1; i >= 0; i--)
       eA.get(i).print(p);
 
@@ -85,7 +85,7 @@ public class Company {
       pA.get(i).print();
     String FileName = "products.txt";
 
-    try {
+   /* try {
 
     } catch (Exception e) {
       System.out.println(e);
@@ -93,6 +93,6 @@ public class Company {
       Scanner s = new Scanner(System.in);
       FileName = s.next();
     }
-
+    */
   }
 }

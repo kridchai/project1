@@ -1,7 +1,7 @@
 public class Employee implements Comparable<Employee>{
     private String name;
     private int[] sales;
-    private int salesBonus = 0,overtimeBonus = 0,totalBonus = 0,extraBonus,totalSale = 0;
+    private int salesBonus = 0,overtimeBonus = 0,totalBonus = 0,extraBonus = 0,totalSale = 0;
     public Employee(String name ,int[] s){
         this.name = name;
         sales = s;
@@ -35,7 +35,7 @@ public class Employee implements Comparable<Employee>{
             System.out.printf("%s %d ",p[i],sales[i]);
         }
         
-        System.out.printf("\n%-15s = %10s %13s = %8s %s = %s\n","total sales",addComma(totalSale),"sales bonus",addComma(salesBonus),"extrabous",addComma(extraBonus));
+        System.out.printf("\n%-15s = %10s %13s = %8s   %s = %s\n","total sales",addComma(totalSale),"sales bonus",addComma(salesBonus),"extrabous",addComma(extraBonus));
         System.out.printf("%-15s = %10s %13s = %8s\n","overtime bonus",addComma(overtimeBonus),"total bonus",addComma(totalBonus));
     
     }
