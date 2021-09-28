@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Comparable<Employee>{
     private String name;
     private int[] sales;
     private int salesBonus = 0,overtimeBonus = 0,totalBonus = 0,extraBonus,totalSale = 0;
@@ -25,6 +25,10 @@ public class Employee {
     public String getName(){
         return name;
     }
+
+    public int GetTotalSale(){
+      return totalSale;
+    }
     public void print(String[] p){
        System.out.printf("\n%-7s >> ",name);
         for(int i = 0;i<p.length;i++){
@@ -49,5 +53,32 @@ public class Employee {
         }
         return b;
     
+    }
+
+    public int compareTo(Employee other) { 
+        if (this.totalSale > other.totalSale)
+            return 1;
+        else if(this.totalSale < other.totalSale)
+            return -1;
+        else{
+            if(this.salesBonus > other.salesBonus)
+                return 1;
+            else if(this.salesBonus < other.salesBonus)
+                return -1;
+            else{
+                if(this.overtimeBonus > overtimeBonus)
+                    return 1;
+                else if(this.overtimeBonus < other.overtimeBonus)
+                    return -1;
+                else{
+                    if(this.name.compareTo(other.name)>0)
+                        return -1;
+                    else if(this.name.compareTo(other.name)<0)
+                        return 1;
+                    else 
+                        return 0;
+                }
+            }
+        } 
     }
 }

@@ -7,4 +7,9 @@ public class MyArrayList extends ArrayList<Employee>  {
         }
         return -1;
     }
+        public int compareTo(Product other) { 
+        if (super(totalBonus) > super(other.totalBonus))
+            return 1;
+
+    }
 }
