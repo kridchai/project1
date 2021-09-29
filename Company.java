@@ -66,8 +66,8 @@ public class Company {
         int[] sales = new int[buff.length - 1];
        // try{
       
-        for (int i = 0; i < sales.length; i++) {
-        sales[i] = Integer.parseInt(buff[i + 1].trim());
+        for (int i = 0; i < sales.length; i++) 
+           sales[i] = Integer.parseInt(buff[i + 1].trim());
 
         /*if( (sales[i]<0) || 
         {
@@ -90,7 +90,6 @@ public class Company {
  //   System.out.print("Input error: ");
     System.out.print(line);
    /* System.out.println("Correction  : %s, %d, %d, %d, %d");*/
-  }
       }
       File2.close();
       }
