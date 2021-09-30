@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-
+import java.math.*;
 public class Company {
   
   public static void main(String[] args) {
@@ -10,7 +10,6 @@ public class Company {
    Scanner scan2 = new Scanner(System.in);
    Scanner scan3 = new Scanner(System.in);
         String pd, em, ov;
-   //ArrayList<String> t = new ArrayList<String>();
       Scanner File1 = null;
       Scanner File2 = null;
        Scanner File3 = null;
@@ -21,7 +20,7 @@ public class Company {
       while(Success1==false){
     try {
       //---------1-----------             
-                   // t.add("P");
+                  
      File1 = new Scanner(new File(pd));
       Success1 = true;
       
@@ -44,39 +43,60 @@ public class Company {
                 pd = x.next();
       }
     }
+    System.out.printf("\n");
       
       
-      boolean Success2 = false;
+   
+      //---------2-----------
+      
+         boolean Success2 = false;
        System.out.println("Enter employee file = ");
         em = scan2.next();
       while(Success2==false){
       try{
-      //---------2-----------
-      //Scanner scan2 = new Scanner(System.in);
-        
        
-            
-               //t.add("E");
           File2 = new Scanner(new File(em));
           Success2 = true;
+          System.out.println("\n");
+          
         while (File2.hasNext()) {
-    String line = File2.nextLine();
+        int checkErr = 0;
+        String line = File2.nextLine();
         String[] buff = line.split(",");
         String name = buff[0].trim();
-        int[] sales = new int[buff.length - 1];
-       // try{
-      
-        for (int i = 0; i < sales.length; i++) 
-           sales[i] = Integer.parseInt(buff[i + 1].trim());
-
-        /*if( (sales[i]<0) || 
-        {
-          System.out.println("Input error: "+line);
-       sales[i]=0;
-        }
+       int[] sales = new int[pA.size()];
+         
+        try{
+          for (int i = 0; i < buff.length-1; i++) {
+            try{ sales[i] = Integer.parseInt(buff[i +1].trim());}
+            catch(NumberFormatException e){
+              sales[i]=0;
+              checkErr = 1;
+            }
+            if(sales[i]<0)
+            {
+             checkErr = 1;
+              sales[i]=0;
+            }
+          }
         } 
-        //System.out.println("Correction : %s,%d,%d,%d,%d,%d",name,sales[]);
-        */
+       catch(ArrayIndexOutOfBoundsException e){
+          checkErr = 1;
+        }
+        if(buff.length-1<pA.size()){
+          
+          checkErr = 1;
+        }
+        if(checkErr==1){
+          System.out.println("Input error: "+line);
+          System.out.print("Correction : "+name);
+          for (int i = 0; i < sales.length; i++)
+          {
+            System.out.print(", "+sales[i]);
+          }
+          System.out.println("\n");
+        }
+          
         
         Employee e = new Employee(name, sales);
         for (int j = 0; j < sales.length; j++) {
@@ -85,15 +105,11 @@ public class Company {
           pA.get(j).addProduct(sales[j]);
         }
         eA.add(e);
-  /*}
-  catch(Exception e){
- //   System.out.print("Input error: ");
-    System.out.print(line);
-   /* System.out.println("Correction  : %s, %d, %d, %d, %d");*/
+  
       }
       File2.close();
       }
-           catch (Exception e) {
+      catch (Exception e) {
       
         System.out.println(e);
         System.out.println("Enter employee file =");
@@ -102,18 +118,19 @@ public class Company {
       
       }  
       }
+       System.out.printf("\n");
       
       
        
       //---------3-----------
-                   boolean Success3 = false;
+       boolean Success3 = false;
        System.out.println("Enter overtime file = ");
         ov = scan3.next();
       while(Success3==false){
       try{
         File3 = new Scanner(new File(ov));
         Success3 = true;
-        //t.add("O");
+      
       while (File3.hasNext()) {
         int c;
         String line = File3.nextLine();
@@ -154,7 +171,7 @@ public class Company {
       if(eA.get(i).GetTotalSale()!=eA.get(i-1).GetTotalSale())
         break;
     }
-    int moneyAdded = (int)( (0.005 * eA.get(eA.size()-1).GetTotalSale())/count );
+    int moneyAdded = (int)Math.round( (0.005 * eA.get(eA.size()-1).GetTotalSale())/count );
     for(int i = eA.size()-1;i>=0;i--){
       count--;
       eA.get(i).addextraBonus(moneyAdded);
@@ -164,7 +181,7 @@ public class Company {
 
     // copy product name to array p
     String[] p = new String[pA.size()];
-    System.out.println(pA.size());
+   // System.out.println(pA.size());
     for (int i = pA.size() - 1; i >= 0; i--)
       p[i] = pA.get(i).getName();
 
@@ -176,47 +193,9 @@ public class Company {
     Collections.sort(pA);
     for (int i = pA.size() - 1; i >= 0; i--)
       pA.get(i).print();
-    String FileName = "products.txt";
     
 }
 }
-   /* try {
-
-    } catch (Exception e) {
-      System.out.println(e);
-      System.out.printf("New file name : ");
-      Scanner s = new Scanner(System.in);
-      FileName = s.next();
-    }
-    */
-  
-  /*public void process(MyArrayList eA ,Scanner File2){
-   String line = File2.nextLine();
-        String[] buff = line.split(",");
-        String name = buff[0].trim();
-        int[] sales = new int[buff.length - 1];
-        try{
-      
-        for (int i = 0; i < sales.length; i++) {
-        sales[i] = Integer.parseInt(buff[i + 1].trim());
-        if(sales[i]<0 || sales[i] instanceof Double){
-          System.out.println("Input error: "+line);
-       sales[i]=0;
-        //throw new Exception("Correction: "+line);
-        }
-        }
-        Employee e = new Employee(name, sales);
-        for (int i = 0; i < sales.length; i++) {
-          e.addsaleBonus(sales[i] * pA.get(i).calBonus());
-          e.addSaleBaht(sales[i] * pA.get(i).getPrice());
-          pA.get(i).addProduct(sales[i]);
-        }
-        eA.add(e);
-  }
-  catch(Exception e){
- //   System.out.print("Input error: ");
-    System.out.print(line);
-   /* System.out.println("Correction  : %s, %d, %d, %d, %d");*/
   
   
 

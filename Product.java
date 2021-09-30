@@ -4,7 +4,7 @@
     public Product(String name,int price){
         this.name = name;
         this.price = price;
-        this.totalSalesBaht = price;
+        this.totalSalesBaht = 0;
         this.totalSalesUnit = 0;
     }
     public void addProduct(int number){
